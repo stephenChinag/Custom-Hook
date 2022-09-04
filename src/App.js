@@ -13,7 +13,7 @@ function App() {
     setError(null);
     try {
       const response = await fetch(
-        'https://react-http-6b4a6.firebaseio.com/tasks.json'
+        'https://projectone-35744-default-rtdb.firebaseio.com/tasks.json'
       );
 
       if (!response.ok) {
@@ -25,7 +25,9 @@ function App() {
       const loadedTasks = [];
 
       for (const taskKey in data) {
-        loadedTasks.push({ id: taskKey, text: data[taskKey].text });
+        loadedTasks.push({ id: taskKey,
+           text: data[taskKey].text
+           });
       }
 
       setTasks(loadedTasks);
