@@ -11,7 +11,7 @@ const Tasks = (props) => {
         {props.items.map((task) => (
           <TaskItem key={task.id}>{task.text}</TaskItem>
         ))}
-      </ul>
+      </ul> 
     );
   }
 
