@@ -1,16 +1,20 @@
 import React,{useState} from 'react'
 
- const useHttp=()=> {
+ const useHttp=(requestConfig)=> {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
 
-  const sendRequest = async (taskText) => {
+  const sendRequest = async () => {
     setIsLoading(true);
     setError(null);
     try {
       const response = await fetch(
-        'https://projectone-35744-default-rtdb.firebaseio.com/tasks.json'
+        requestConfig.url,{
+          methoth:requestConfig.method,
+          headers:requestConfig.headers,
+          body: JSON.stringify(requestConfig.body)
+        }
       );
 
       if (!response.ok) {
