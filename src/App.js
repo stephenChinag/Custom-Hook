@@ -1,9 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 
 import Tasks from './components/Tasks/Tasks';
 import NewTask from './components/NewTask/NewTask';
+import useHttp from './components/hooks/use-http';
 
 function App() {
+const [tasks, setTasks] = useState([])
+
+const transFormTask=(taskObj)=>{
+  const loadedTask=[]
+
+
+  for(const taskKey in taskObj){
+    loadedTask.push({
+      id:taskKey,
+      text:taskObj[taskKey].text
+    })
+  }
+
+  setTasks(loadedTask)
+
+}
+useHttp({
+  url:'https://projectone-35744-default-rtdb.firebaseio.com/tasks.json'
+}, transFormTask)
 
 
   useEffect(() => {
