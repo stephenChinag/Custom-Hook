@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 
- const useHttp=(requestConfig)=> {
+ const useHttp=(requestConfig , applyData)=> {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -11,9 +11,9 @@ import React,{useState} from 'react'
     try {
       const response = await fetch(
         requestConfig.url,{
-          methoth:requestConfig.method,
-          headers:requestConfig.headers,
-          body: JSON.stringify(requestConfig.body)
+          methoth:requestConfig.method ? requestConfig.method: "GET",
+          headers:requestConfig.headers ?   requestConfig.headers : {},
+          body: requestConfig.body ? JSON.stringify(requestConfig.body): null
         }
       );
 
@@ -23,25 +23,22 @@ import React,{useState} from 'react'
 
       const data = await response.json();
 
-      const loadedTasks = [];
+      applyData(data)
 
-      for (const taskKey in data) {
-        loadedTasks.push({ id: taskKey,
-           text: data[taskKey].text
-           });
-      }
-
-      setTasks(loadedTasks);
+     
     } catch (err) {
       setError(err.message || 'Something went wrong!');
     }
     setIsLoading(false);
   };
-  return (
-    <div>
 
-    </div>
-  )
-}
+
+  return{
+    isLoading,
+    error,
+    sendRequest,
+  }
+
+  }
 
 export default useHttp;
