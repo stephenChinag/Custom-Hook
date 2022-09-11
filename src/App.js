@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect,useState,Fragment } from 'react';
 
 import Tasks from './components/Tasks/Tasks';
 import NewTask from './components/NewTask/NewTask';
@@ -7,7 +7,7 @@ import useHttp from './components/hooks/use-http';
 function App() {
 const [tasks, setTasks] = useState([])
 
-const transFormTask=(taskObj)=>{
+const transFormTask=  (taskObj)=>{
   const loadedTask=[]
 
 
@@ -21,13 +21,11 @@ const transFormTask=(taskObj)=>{
   setTasks(loadedTask)
 
 }
-useHttp({
-  url:'https://projectone-35744-default-rtdb.firebaseio.com/tasks.json'
-}, transFormTask)
+const {isLoading,error,sendRequest: fetchTasks}=useHttp()
 
 
   useEffect(() => {
-    fetchTasks();
+    fetchTasks({url:'https://projectone-35744-default-rtdb.firebaseio.com/tasks.json'},transFormTask);
   }, []);
 
   const taskAddHandler = (task) => {
@@ -35,7 +33,7 @@ useHttp({
   };
 
   return (
-    <React.Fragment>
+ <Fragment>
       <NewTask onAddTask={taskAddHandler} />
       <Tasks
         items={tasks}
@@ -43,7 +41,8 @@ useHttp({
         error={error}
         onFetch={fetchTasks}
       />
-    </React.Fragment>
+      </Fragment>
+
   );
 }
 
