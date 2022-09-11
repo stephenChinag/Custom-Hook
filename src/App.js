@@ -1,8 +1,8 @@
-import React, { useEffect,useState,Fragment } from 'react';
 
 import Tasks from './components/Tasks/Tasks';
 import NewTask from './components/NewTask/NewTask';
 import useHttp from './components/hooks/use-http';
+import { useEffect,useState,Fragment } from 'react';
 
 function App() {
 const [tasks, setTasks] = useState([])
@@ -26,7 +26,7 @@ const {isLoading,error,sendRequest: fetchTasks}=useHttp()
 
   useEffect(() => {
     fetchTasks({url:'https://projectone-35744-default-rtdb.firebaseio.com/tasks.json'},transFormTask);
-  }, []);
+  },[]);
 
   const taskAddHandler = (task) => {
     setTasks((prevTasks) => prevTasks.concat(task));
