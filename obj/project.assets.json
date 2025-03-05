@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\Desktop\\Custom-Hook\\Custom-Hook.csproj",
-      "projectName": "Custom-Hook",
-      "projectPath": "C:\\Users\\HP\\Desktop\\Custom-Hook\\Custom-Hook.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Desktop\\Constructor\\Constructor.csproj",
+      "projectName": "Constructor",
+      "projectPath": "C:\\Users\\HP\\Desktop\\Constructor\\Constructor.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Desktop\\Custom-Hook\\obj\\",
+      "outputPath": "C:\\Users\\HP\\Desktop\\Constructor\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
